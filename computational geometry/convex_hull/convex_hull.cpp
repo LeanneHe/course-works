@@ -31,7 +31,7 @@ bool right_turn(const PointType &P1, const PointType &P2, const PointType &P3)
 }
 
 
-bool is_empty(std::ifstream& pFile)
+bool Empty(std::ifstream & pFile)
 {
     return pFile.peek() == std::ifstream::traits_type::eof();
 }
@@ -51,10 +51,10 @@ int main () {
     
     // reading data from input file
     myfile.open("input.txt");
-    if(is_empty(myfile))
+    if(Empty(myfile))
 		return 0;
 	
-    if(myfile.is_open() && !is_empty(myfile))
+    if(myfile.is_open() && !Empty(myfile))
     {
      //myfile >> n_points; //now don't have this line
      //points = new PointType[n_points];
