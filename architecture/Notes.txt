@@ -1,0 +1,43 @@
+
+			Type Opcode FuncField
+	addu	R 	0x00, 0x21
+	addiu	I 	0x09
+	subu	R 	0x00, 0x23
+	sll		R 	0x00, 0x00
+	srl		R 	0x00, 0x02
+	and		R 	0x00, 0x24
+	andi	I 	0x0C
+	or		R 	0x00, 0x25
+	ori		I 	0x0D
+	lui		I 	0x0F
+	slt		R 	0x00, 0x2A
+	beq		I 	0x04
+	bne		I 	0x05
+	j		J 	0x02
+	jal		J 	0x03
+	jr		R 	0x00, 0x08
+	lw		I 	0x23
+	sw		I 	0x2B
+
+Sorted						Expression
+sll		R 0x00, 0x00		R[rd] = R[rt] << shamt
+srl		R 0x00, 0x02		R[rd] = R[rt] >> shamt
+jr		R 0x00, 0x08		PC = R[rs]
+addu	R 0x00, 0x21		R[rd] = R[rs] + R[rt]
+subu	R 0x00, 0x23		R[rd] = R[rs] - R[rt]
+and		R 0x00, 0x24		R[rd] = R[rs] & R[rt]
+or		R 0x00, 0x25		R[rd] = R[rs] | R[rt]
+slt		R 0x00, 0x2A		R[rd] = (R[rs] < R[rt]) ? 1 : 0
+j		J 0x02				PC = JumpAddr
+jal		J 0x03				R[31] = PC + 8; PC = JumpAddr
+beq		I 0x04				if(R[rs] == R[rt]) PC = PC + 4 + BranchAddr
+bne		I 0x05				if(R[rs] != R[rt]) PC = PC + 4 + BranchAddr
+addiu	I 0x09				R[rt] = R[rs] + SignExtImm
+andi	I 0x0C				R[rt] = R[rs] & ZeroExtImm
+ori		I 0x0D				R[rt] = R[rs] | ZeroExtImm
+lui		I 0x0F				R[rt] = {imm, 16'b0}
+lw		I 0x23				R[rt] = M[R[rs]+SignExtImm]
+sw		I 0x2B				M[R[rs]+SignExtImm] = R[rt]
+
+
+My testing strategy is to get the simulator working properly with the supplied sample code to weed-out the some of the bugs.
