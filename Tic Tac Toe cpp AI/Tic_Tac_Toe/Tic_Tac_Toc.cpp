@@ -660,7 +660,7 @@ int get_backed_up_value_of_node(int * chess_board,int h,int depth,int * ancestor
     }
 }
 
-int evaluation_function(int * chess_board)
+int evaluation_function(int * chess_board)//****
 {
     if(win(chess_board))
         return MAX;
