@@ -1,4 +1,4 @@
 README
 makefile
-java Search.java inputFile.txt key
+java Search inputFile.txt key
 

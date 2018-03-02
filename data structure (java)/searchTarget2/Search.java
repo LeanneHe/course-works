@@ -44,8 +44,9 @@ public class Search{
       line = fileInput.nextLine();
       token[i] = line;
     }
-    //puts the string Array in order
+    //puts the string Array in order (z->a)
     mergeSort(token,lineNumber, 0, token.length-1);
+      
     //prints if the target is found and on what line
     for(int i=1; i<args.length; i++){
       System.out.println( binarySearch(token, lineNumber, 0, token.length-1, args[i]));
