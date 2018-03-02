@@ -1,8 +1,4 @@
 # Short test case for your project.
-#
-# Note that this is by no means a comprehensive test!
-#
-
 		.text
 		addiu	$a0,$0,3
 		addiu	$a1,$0,2

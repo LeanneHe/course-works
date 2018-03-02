@@ -13,11 +13,13 @@ int main (int argc, char *argv[]) {
     int interactive = FALSE;
     FILE *filein;
 
+
+
     if (argc < 2) {
         fprintf (stderr, "Not enough arguments.\n");
         exit (1);
     }
-    for (argIndex=1; argIndex<argc && argv[argIndex][0]=='-'; argIndex++) {
+       for (argIndex=1; argIndex< argc && argv[argIndex][0]=='-'; argIndex++) {
         /* Argument is an option, we hope one of -r, -m, -i, -d. */
         switch (argv[argIndex][1]) {
             case 'r':
@@ -51,7 +53,7 @@ int main (int argc, char *argv[]) {
         fprintf (stderr, "Can't open file: %s\n", argv[argIndex]);
         exit (1);
     }
-    
+     
     InitComputer (filein, printingRegisters, printingMemory,
 	debugging, interactive);
     Simulate ();
