@@ -21,7 +21,7 @@ int test_if_chess_boards_equal(int * ,int * );          //test if the two chessb
 int evaluation_function(int * );                        //evaluation fuction for award
 int full(int *);                                        //check if the borad is full
 void init_ancestor(int * ,int );                        //initialize ancestor
-int get_backed_up_value_of_node(int * ,int ,int ,int * ,int);     //search the back-up value of the node. The input is the board state, the depth(from 0), the MAX depth and ancestor function and the type of node.
+int get_backed_up_value_of_node(int * ,int ,int ,int * ,int);     //search the back-up value of the node. The input is the board state, the depth(from 0), the MAX depth and ancestor function and the type of node. Alpha-beta pruning
 void copy_chess_board(int *, int *);
 
 int main(int argc, char* argv[])
@@ -503,7 +503,7 @@ int test_if_chess_boards_equal(int * chess_board1,int * chess_board2)    //åˆ¤æ–
     return 0;
 }
 
-void init_ancestor(int * ancestor,int node_type)       //alpha-beta pruning
+void init_ancestor(int * ancestor,int node_type)
 {
     
     if(node_type==1)
@@ -528,7 +528,7 @@ void init_ancestor(int * ancestor,int node_type)       //alpha-beta pruning
     }
 }
 
-int get_backed_up_value_of_node(int * chess_board,int h,int depth,int * ancestor,int root_type)
+int get_backed_up_value_of_node(int * chess_board,int h,int depth,int * ancestor,int root_type) //alpha-beta pruning
 {
     if(h==depth||full(chess_board)||win(chess_board))
     {
