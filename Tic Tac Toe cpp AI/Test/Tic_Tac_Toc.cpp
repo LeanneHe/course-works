@@ -22,6 +22,7 @@ int evaluation_function(int * );                        //evaluation fuction for
 int full(int *);                                        //check if the borad is full
 void init_ancestor(int * ,int );                        //initialize ancestor
 int get_backed_up_value_of_node(int * ,int ,int ,int * ,int);     //search the back-up value of the node. The input is the board state, the depth(from 0), the MAX depth and ancestor function and the type of node.
+
 void copy_chess_board(int *, int *);
 
 int main(int argc, char* argv[])
