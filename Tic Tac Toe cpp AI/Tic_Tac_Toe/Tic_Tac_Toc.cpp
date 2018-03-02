@@ -55,7 +55,6 @@ int main(int argc, char* argv[])
     {
         print_board(board);
         while(1){
-            
           while(1){
               printf("Please enter the number of the square\n");
               printf("where you want to place your chess?\n ");
@@ -68,25 +67,21 @@ int main(int argc, char* argv[])
                   break;
               }
           }
-      
           if( full(board) && !win(board)){
               isplay = false;
               printf("It ends in a draw\n");
               break;
           }
             
-            if(win(board))  {
-                isplay = false;
-                printf("you win!\n");
-                break;
-            }
-            
+          if(win(board))  {
+              isplay = false;
+              printf("you win!\n");
+              break;
+          }
             int min = MAX+1;
             int step;
             for(int i=0;i<N*N;i++){
-                    if(board[i]!=0)
-                    continue;
-                
+                if(board[i]!=0)  continue;
                       int temp_chess_board[N*N];
                       copy_chess_board(temp_chess_board,board);
                       int ancestor[N*N];
@@ -97,79 +92,71 @@ int main(int argc, char* argv[])
                       if(temp<min){
                           min = temp;
                           step = i;
-      }
-      }
-                  if(!win(board)&&!full(board))
-      place_piece_on_board(board,step/N,step%N,B);
+                      }
+            }
+                  if(!win(board)&&!full(board))     place_piece_on_board(board,step/N,step%N,B);
                   print_board(board);
-      if(full(board) && !win(board))
-                  {
-      isplay = false;
+                  if(full(board) && !win(board)) {
+                      isplay = false;
                       printf("It ends in a draw\n");
-             break;
-      }
-             if(win(board)==-1)
-      {
-      isplay = false;
+                      break;
+                  }
+                  if(win(board)==-1) {
+                      isplay = false;
                       printf("you lose!\n");
                       break;
+                  }
       }
-      }
-      }
-      else
-      {
-      int max = MIN-1;
-              int step;
-      for(i=0;i<N*N;i++)
-      {
-      int temp_chess_board[N*N];
+      } //flag
+      else  {
+          int max = MIN-1;
+          int step;
+      
+          for(i=0;i<N*N;i++)  {
+                  int temp_chess_board[N*N];
                   copy_chess_board(temp_chess_board,board);
                   int ancestor[N*N];
                   init_ancestor(ancestor,test_node_type(temp_chess_board));
                   place_piece_on_board(temp_chess_board,i/N,i%N,A);
                   int temp = get_backed_up_value_of_node(temp_chess_board,0,6,ancestor,test_node_type(temp_chess_board));
                   printf("temp is %d at (%d,%d)\n",temp,i/N,i%N);
-                  if(temp>max)
-      {
+                  if(temp>max) {
                       max = temp;
                       step = i;
-      }
-      }
-              place_piece_on_board(board,step/N,step%N,B);
+                  }
+         }
+      place_piece_on_board(board,step/N,step%N,B);
       print_board(board);
-      while(1)
-      {
-      while(1)
-      {
-      printf("Please enter the number of the square\n");
-         printf("where you want to place your chess?\n ");
-                 scanf("%s",ch);
-      n = (ch[0]-'0')*N+(ch[1]-'0');
-      printf("%d\n",n);
-                 if(board[n]==0)
-      {
-      place_piece_on_board(board,n/N,n%N,A);
-                 print_board(board);
-             break;
-      }
+      while(1) {
+      while(1) {
+          printf("Please enter the number of the square\n");
+          printf("where you want to place your chess?\n ");
+          scanf("%s",ch);
+          n = (ch[0]-'0')*N+(ch[1]-'0');
+          printf("%d\n",n);
+          
+          if(board[n]==0) {
+                  place_piece_on_board(board,n/N,n%N,A);
+                  print_board(board);
+                  break;
+          }
       }
 
-         if(full(board) && !win(board))
-                  {
-      isplay = false;
-                      printf("It ends in a draw\n");
+         if(full(board) && !win(board)) {
+             isplay = false;
+             printf("It ends in a draw\n");
              break;
+         }
+          
+      if(win(board)==-1)  {
+          isplay = false;
+          printf("you win!\n");
+          break;
       }
-      if(win(board)==-1)
-                  {
-                      isplay = false;
-                      printf("you win!\n");
-             break;
-      }
+          
                   int max = MIN-1;
                   int step = 1;
-      for(i=0;i<N*N;i++)
-                  {
+                  for(i=0;i<N*N;i++) {
                       if(board[i]!=0)
                           continue;
                       int temp_chess_board[N*N];
@@ -270,7 +257,7 @@ int main(int argc, char* argv[])
               }
           }
           fprintf(fp,"\n");*/
-      return 0;
+        return 0;
       }
 
 
@@ -278,9 +265,8 @@ int main(int argc, char* argv[])
       {
       int i;
       chess= 0;
-      for(i = 0; i < N*N; i++)
-      {
-      board[i] = 0;
+      for(i = 0; i < N*N; i++) {
+          board[i] = 0;
       }
       }
 
@@ -289,39 +275,36 @@ int main(int argc, char* argv[])
       int i,j,k;
       char temp[N][2];
       printf("\n\n");
-      for(i = 0;i < (N+1)*(N+1); i++)
-      printf("-");
+      
+      for(i = 0;i < (N+1)*(N+1); i++)    printf("-");
       printf("\n");
-          for(i = 0;i < N; i++)
-      {
-      for(j = 0;j < N; j++)
-      {
-      if(chess_board[i*N+j] == 1)
-      {
-      temp[j][0] = '#';
-      temp[j][1] = '#';
-      }
-      else if(chess_board[i*N+j] == -1)
-      {
+          
+      for(i = 0;i < N; i++) {
+          for(j = 0;j < N; j++) {
+              if(chess_board[i*N+j] == 1) {
+                  temp[j][0] = '#';
+                  temp[j][1] = '#';
+              }
+              else if(chess_board[i*N+j] == -1) {
                       temp[j][0] = 'X';
                       temp[j][1] = 'X';
-      }
-      else
-      {
-      temp[j][0] = i + '0';
-      temp[j][1] = j + '0';
-      }
-      }
-      for(j = 0; j < N-1; j++)
-      printf(" %c%c |",temp[j][0],temp[j][1]);
+              }
+              else {
+                    temp[j][0] = i + '0';
+                    temp[j][1] = j + '0';
+              }
+          }
+      
+          for(j = 0; j < N-1; j++)
+              printf(" %c%c |",temp[j][0],temp[j][1]);
               printf(" %c%c\n",temp[j][0],temp[j][1]);
-      if(i!=N-1)
-      {
-      for(j = 0; j < N-1; j++)
-      printf("----+");
+              if(i!=N-1) {
+                  for(j = 0; j < N-1; j++)
+                      printf("----+");
                   printf("----\n");
+              }
       }
-      }
+      
       for(i = 0;i < (N+1)*(N+1); i++)
       printf("-");
 
@@ -427,7 +410,7 @@ int main(int argc, char* argv[])
       {
           int temp_chess_board[N*N];
           bool same_flag = true;
-      int i,j,k,h;
+          int i,j,k,h;
 
           for(i=0;i<4;i++)
           {
@@ -687,8 +670,9 @@ int main(int argc, char* argv[])
           {
               int temp = BP_net_value(chess_board)*MAX;
               return temp;
+              
               // Using evaluation function to replace BP neuron network
-      /*int i, j;
+              /*int i, j;
               int A_win = 0, B_win = 0;
               int temp_chess_board[N*N];
               for(i=0;i<N;i++)
@@ -813,24 +797,20 @@ int main(int argc, char* argv[])
               return A_win - B_win;*/
           }
       }
-      int full(int * chess_board)
-      {
+      int full(int * chess_board) {
       int i,flag = 0;
-      for(i=0;i<N*N;i++)
-      {
-      if(chess_board[i]==0)
-      {
-      flag = 1;
-      break;
+      for(i=0;i<N*N;i++) {
+          if(chess_board[i]==0) {
+              flag = 1;
+              break;
+          }
       }
-      }
-      if(flag)
-      return 0;
+      if(flag) return 0;
       return 1;
       }
-      void copy_chess_board(int * chess_board1, int * chess_board2)
-      {
+
+      void copy_chess_board(int * chess_board1, int * chess_board2) {
       int i=0;
       for(i= 0 ;i<N*N ;i++)
-      chess_board1[i] = chess_board2[i];
+          chess_board1[i] = chess_board2[i];
       }
