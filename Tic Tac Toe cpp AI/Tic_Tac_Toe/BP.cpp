@@ -54,7 +54,7 @@ void init_weight()
 
 
 // Activation fuction using Hyperbolic tangent function, finial step for each layer of the network
-  
+
 double logistic_S(double theta)
 {
     return (1.0-exp(-theta))/(1.0+exp(-theta));
@@ -91,12 +91,12 @@ void adapt_BP_net_weight(int * chess_board,int backed_up_value)
             theta_i = output_layer;
         }
         y_i = logistic_S(theta_i);
-
-
+        
+        
         // Stop if the loss is good enough or iteration time is up to MAX_ITERATION_TIME
         if(fabs(y_i-(double)backed_up_value/(double)MAX)<0.000001||temp_iteration_times>=iteration_times)
             break;
-
+        
         // network goes backward. start back propagation
         for(j=0;j<N*N;j++)
         {
@@ -142,6 +142,6 @@ double BP_net_value(int * chess_board)
         theta_i = output_layer;
     }
     y_i = logistic_S(theta_i);
-
+    
     return y_i;
 }
